@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>De schoonheid van het orthodoxe geloof</title>
+<meta name="description" content="Geschiedenis, iconen, architectuur en tradities van de Orthodoxe Kerk, met een interactieve 3D-kerk.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a24b;--gold2:#e8c978;--navy:#0b1230;--char:#121217;--cream:#f3e9d2;--candle:#e8a548;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px));background:var(--char)}
+body{margin:0;background:var(--char);color:var(--cream);font:400 17px/1.7 "Hanken Grotesk",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.1;margin:0 0 .5em}
+h2{font-size:clamp(2rem,5vw,3.4rem)}h3{font-size:1.5rem;color:var(--gold2)}
+p{margin:0 0 1em;max-width:62ch}a{color:inherit}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 5vw 14px;background:linear-gradient(#0b1230cc,transparent)}
+nav b{font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--gold2);letter-spacing:.04em}
+nav ul{display:flex;gap:1.6rem;list-style:none;margin:0;padding:0;font-size:.95rem}
+nav ul a{text-decoration:none;opacity:.85}nav ul a:hover{color:var(--gold2);opacity:1}
+.r{display:flex;gap:.6rem;align-items:center}
+.lg button,#burger{background:none;border:1px solid var(--gold);color:var(--gold2);padding:.35rem .7rem;font:inherit;font-size:.9rem;cursor:pointer}
+.lg button[aria-pressed=true]{background:var(--gold);color:#1a1405}
+#burger{display:none;border-radius:4px}
+#hero{position:relative;height:100svh;min-height:560px;display:grid;align-content:end;padding:0 5vw 12vh;background:radial-gradient(ellipse at 60% 40%,#1b2a66 0,var(--navy) 55%,#05070f)}
+#gl,#fallback{position:absolute;inset:0;width:100%;height:100%}
+#fallback{display:none;background:radial-gradient(circle at 50% 70%,#e8a54855,transparent 45%)}
+#hero .t{position:relative;z-index:2;max-width:760px;animation:in 1.6s ease both}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2.6rem,8vw,6rem);margin-bottom:.3em;text-shadow:0 2px 30px #000}
+.sub{font-size:clamp(1.05rem,2.2vw,1.35rem);color:#e6dbc0;margin-bottom:1.6rem}
+.btn{display:inline-block;padding:.85rem 1.6rem;border:1px solid var(--gold);border-radius:2px;text-decoration:none;margin:0 .6rem .6rem 0;transition:.3s}
+.btn.p{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a1405;font-weight:500}
+.btn:hover{box-shadow:0 0 26px #c9a24b66;transform:translateY(-2px)}
+.scroll{position:absolute;bottom:3vh;left:50%;width:1px;height:46px;background:linear-gradient(var(--gold2),transparent);z-index:2;animation:pulse 2.2s infinite}
+@keyframes pulse{50%{opacity:.2}}
+section{padding:12vh 5vw;position:relative}
+.wrap{max-width:1100px;margin:0 auto}
+.split{display:grid;grid-template-columns:1.1fr 1fr;gap:5vw;align-items:center}
+.frame{aspect-ratio:3/4;border:1px solid var(--gold);padding:10px;background:var(--navy);box-shadow:0 0 0 6px var(--char),0 0 0 7px #c9a24b66,0 30px 80px #000}
+.frame svg{width:100%;height:100%;display:block}
+.alt{background:linear-gradient(var(--char),var(--navy) 20%,var(--navy) 80%,var(--char))}
+.tl{position:relative;margin-top:3rem;padding-left:28px;border-left:1px solid var(--gold)}
+.ev{position:relative;margin-bottom:1.4rem;padding:1.1rem 1.4rem;background:#ffffff08;border:1px solid #c9a24b44;max-width:720px}
+.ev::before{content:"";position:absolute;left:-36px;top:1.5rem;width:15px;height:15px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--candle)}
+.ev b{font:600 1.7rem "Cormorant Garamond",serif;color:var(--gold2)}.ev p{margin:.2rem 0 0}
+.rv{opacity:0;transform:translateY(30px);transition:1s}.rv.on{opacity:1;transform:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.4rem;margin-top:2.5rem;perspective:900px}
+.card{position:relative;background:linear-gradient(160deg,#16204a,#0a0e24);border:1px solid #c9a24b66;padding:1.4rem;transform-style:preserve-3d;transition:transform .15s,box-shadow .3s;text-align:left;color:inherit;font:inherit}
+.card:hover{box-shadow:0 20px 50px #000a,0 0 30px #c9a24b33}
+.card>*{transform:translateZ(24px)}.card p{font-size:.95rem;margin:0}
+.card small{color:var(--candle)}
+button.card{cursor:pointer;width:100%}
+.med{width:120px;height:120px;margin:0 auto 1rem;display:block}
+dialog{background:var(--navy);color:var(--cream);border:1px solid var(--gold);max-width:min(520px,92vw);padding:2rem;text-align:center}
+dialog::backdrop{background:#000d}
+dialog svg{width:260px;max-width:70%}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:2rem 0 1.2rem}
+.tabs button{background:none;border:1px solid #c9a24b66;color:inherit;padding:.5rem 1rem;font:inherit;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--gold);color:#1a1405}
+#panel{min-height:150px;border-left:2px solid var(--gold);padding-left:1.4rem}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;text-align:center;margin-top:3rem}
+.quotes p{font:italic 1.7rem/1.3 "Cormorant Garamond",serif;color:var(--gold2);margin:auto}
+.quotes small{font:14px "Hanken Grotesk",sans-serif;color:var(--cream)}
+footer{padding:6vh 5vw calc(4vh + env(safe-area-inset-bottom,0px));border-top:1px solid var(--gold);background:#07080d;font-size:.9rem}
+footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem}
+footer a{color:var(--gold2)}footer ul{list-style:none;padding:0;margin:0}
+@media(max-width:820px){.split{grid-template-columns:1fr}.frame{aspect-ratio:4/3}
+#burger{display:block}nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#0b1230f2;padding:1rem 5vw;gap:1rem}nav ul.open{display:flex}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+<b>Ὀρθοδοξία</b>
+<ul id="menu"><li><a href="#que" data-t="n1"></a></li><li><a href="#historia" data-t="n2"></a></li><li><a href="#iconos" data-t="n3"></a></li><li><a href="#arq" data-t="n4"></a></li><li><a href="#tradiciones" data-t="n5"></a></li><li><a href="#paz" data-t="n6"></a></li></ul>
+<div class="r"><div class="lg" role="group" aria-label="Taal / Language"><button data-l="0" aria-pressed="true">NL</button><button data-l="1" aria-pressed="false">EN</button></div>
+<button id="burger" aria-expanded="false" aria-controls="menu">Menu</button></div>
+</nav>
+
+<header id="hero">
+<canvas id="gl" role="img" data-al="gl"></canvas>
+<div id="fallback"></div>
+<div class="t">
+<h1 data-t="h1"></h1>
+<p class="sub" data-t="sub"></p>
+<a class="btn p" href="#que" data-t="b1"></a><a class="btn" href="#historia" data-t="b2"></a>
+</div>
+<div class="scroll" aria-hidden="true"></div>
+</header>
+
+<main>
+<section id="que"><div class="wrap split">
+<div class="rv"><h2 data-t="qt"></h2><p data-t="q1"></p><p data-t="q2"></p><p data-t="q3"></p></div>
+<div class="frame rv" id="hf" role="img" data-al="hf"></div>
+</div></section>
+
+<section id="historia" class="alt"><div class="wrap"><h2 class="rv" data-t="ht"></h2>
+<p class="rv" data-t="hi"></p>
+<div class="tl" id="tl"></div></div></section>
+
+<section id="iconos"><div class="wrap"><h2 class="rv" data-t="it"></h2>
+<p class="rv" data-t="ii"></p>
+<div class="grid" id="ic"></div></div></section>
+
+<section id="arq" class="alt"><div class="wrap"><h2 class="rv" data-t="at"></h2>
+<p class="rv" data-t="ai"></p>
+<div class="grid" id="ar"></div></div></section>
+
+<section id="tradiciones"><div class="wrap"><h2 class="rv" data-t="tt"></h2>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="panel" role="tabpanel" aria-live="polite"></div></div></section>
+
+<section id="paz" class="alt"><div class="wrap" style="text-align:center"><h2 data-t="rt"></h2>
+<p style="margin:0 auto" data-t="ri"></p>
+<div class="quotes"><p><span data-t="k1"></span><br><small data-t="s1"></small></p><p><span data-t="k2"></span><br><small data-t="s2"></small></p><p><span data-t="k3"></span><br><small data-t="s3"></small></p></div></div></section>
+</main>
+
+<dialog id="dlg"><div id="dc"></div><p style="margin:1rem auto 0" id="dtx"></p><button class="btn p" id="dx" data-t="cl" style="font:inherit;cursor:pointer"></button></dialog>
+
+<footer><div class="wrap">
+<div><b style="color:var(--gold2)" data-t="f1"></b><p data-t="f1t"></p></div>
+<div><b style="color:var(--gold2)" data-t="f2"></b><ul><li><a href="#que" data-t="n1"></a></li><li><a href="#historia" data-t="n2"></a></li><li><a href="#iconos" data-t="n3"></a></li><li><a href="#arq" data-t="n4"></a></li><li><a href="#tradiciones" data-t="n5"></a></li></ul></div>
+<div><b style="color:var(--gold2)" data-t="f3"></b><p data-t="f3t"></p></div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $=function(s){return document.querySelector(s)};
+var L=0;try{var sv=localStorage.getItem('lang');L=sv!==null?+sv:(/^en/i.test(navigator.language)?1:0)}catch(e){}
+/* ---------- teksten / texts [NL, EN] ---------- */
+var S={
+n1:["Wat is het","What it is"],n2:["Geschiedenis","History"],n3:["Symbolen","Symbols"],n4:["Architectuur","Architecture"],n5:["Tradities","Traditions"],n6:["Reflecties","Reflections"],
+h1:["De schoonheid van het orthodoxe geloof","The beauty of the Orthodox faith"],
+sub:["Een geschiedenis van geloof, traditie, iconen en spiritualiteit die eeuwen overspant.","A history of faith, tradition, icons and spirituality that spans the centuries."],
+b1:["Ontdek de orthodoxe traditie","Discover the Orthodox tradition"],b2:["Verken onze geschiedenis","Explore our history"],
+qt:["Wat is de Orthodoxe Kerk?","What is the Orthodox Church?"],
+q1:["Het is een gemeenschap van zelfstandige (autocefale) christelijke kerken — onder andere de patriarchaten van Constantinopel, Alexandrië, Antiochië, Jeruzalem, Moskou, Servië, Roemenië en Bulgarije — die dezelfde geloofsbelijdenis en hetzelfde sacramentele leven delen, zonder één hoofd zoals de paus.","It is a communion of self-governing (autocephalous) Christian churches — among them the patriarchates of Constantinople, Alexandria, Antioch, Jerusalem, Moscow, Serbia, Romania and Bulgaria — sharing the same faith and the same sacramental life, without a single head comparable to the pope."],
+q2:["Ze beschouwt zichzelf als voortzetting van de kerk van de apostelen. Ze belijdt de geloofsbelijdenis van Nicea en Constantinopel, houdt vast aan de leer van de Drie-eenheid en de menswording van Christus, en viert de zeven mysteriën (sacramenten), met de Goddelijke Liturgie als middelpunt.","It sees itself as the continuation of the Church of the apostles. It confesses the Nicene–Constantinopolitan Creed, holds to the doctrine of the Trinity and the incarnation of Christ, and celebrates seven mysteries (sacraments), with the Divine Liturgy at its centre."],
+q3:["Haar traditie omvat de Schrift, de oecumenische concilies en de kerkvaders. Vandaag telt ze honderden miljoenen gelovigen, vooral in Oost-Europa, het oostelijk Middellandse Zeegebied en hun diaspora.","Its tradition includes Scripture, the ecumenical councils and the Church Fathers. Today it counts hundreds of millions of believers, mainly in Eastern Europe, the eastern Mediterranean and their diasporas."],
+hf:["Gouden illustratie van een kerk met vijf koepels","Golden illustration of a church with five domes"],
+gl:["3D-scène van een orthodoxe kerk met gouden koepels","3D scene of an Orthodox church with golden domes"],
+ht:["Geschiedenis","History"],
+hi:["Een tijdlijn met de belangrijkste momenten. De data zijn de gangbare in de geschiedschrijving; sommige, zoals die van Kiev, zijn traditioneel.","A timeline of the main milestones. The dates are those commonly accepted by historians; some, like the one for Kiev, are traditional."],
+it:["Iconen en heilige symbolen","Icons and sacred symbols"],
+ii:["Voor de gelovige is een icoon een «venster» op het heilige, geen versiering: het wordt vereerd, niet aanbeden. Hier staan vier symbolen, als originele illustraties getekend, die in bijna alle iconen voorkomen. Klik op een symbool om het te vergroten.","For the believer an icon is a “window” onto the sacred, not a decoration: it is venerated, not worshipped. Here are four symbols, drawn as original illustrations, that appear in almost every icon. Click one to enlarge it."],
+at:["Orthodoxe architectuur","Orthodox architecture"],
+ai:["Beweeg de cursor (of je vinger) over elke kaart.","Move your cursor (or finger) over each card."],
+tt:["Tradities en feesten","Traditions and celebrations"],
+rt:["Reflecties","Reflections"],ri:["Eenvoudige woorden uit de liturgie en de Schrift.","Simple words from the liturgy and Scripture."],
+k1:["«Heer, ontferm U.»","“Lord, have mercy.”"],s1:["Kyrie eleison, liturgische acclamatie","Kyrie eleison, liturgical acclamation"],
+k2:["«God is liefde.»","“God is love.”"],s2:["1 Johannes 4:8","1 John 4:8"],
+k3:["«Gelukkig wie zachtmoedig zijn.»","“Blessed are the meek.”"],s3:["Matteüs 5:5","Matthew 5:5"],
+cl:["Sluiten","Close"],
+f1:["Over het project","About the project"],f1t:["Educatieve website over de orthodoxe traditie. De 3D-kerk is een origineel, procedureel model gemaakt met Three.js.","Educational website about the Orthodox tradition. The 3D church is an original procedural model built with Three.js."],
+f2:["Secties","Sections"],f3:["Credits en privacy","Credits and privacy"],
+f3t:["Alle illustraties en het 3D-model zijn origineel en zonder externe afhankelijkheden, behalve Three.js (MIT-licentie) en de lettertypen Cormorant Garamond en Hanken Grotesk (SIL OFL). Deze pagina verzamelt geen persoonsgegevens.","All illustrations and the 3D model are original and free of third-party assets, apart from Three.js (MIT licence) and the fonts Cormorant Garamond and Hanken Grotesk (SIL OFL). This page collects no personal data."]};
+var EV=[["325",["Concilie van Nicea","Council of Nicaea"],["Eerste oecumenisch concilie: veroordeelt het arianisme en legt de basis van de geloofsbelijdenis.","First ecumenical council: condemns Arianism and lays the foundation of the Creed."]],
+["381",["Concilie van Constantinopel I","First Council of Constantinople"],["Vult de geloofsbelijdenis aan met de goddelijkheid van de Heilige Geest.","Completes the Creed with the divinity of the Holy Spirit."]],
+["451",["Concilie van Chalcedon","Council of Chalcedon"],["Bepaalt de twee naturen van Christus; de «pre-Chalcedonische» kerken aanvaarden dit niet.","Defines the two natures of Christ; the “pre-Chalcedonian” churches do not accept it."]],
+["787",["Tweede concilie van Nicea","Second Council of Nicaea"],["Zevende oecumenisch concilie; herstelt de verering van iconen na de beeldenstorm.","Seventh ecumenical council; restores the veneration of icons after iconoclasm."]],
+["843",["Zege van de Orthodoxie","Triumph of Orthodoxy"],["Definitief einde van de eerste beeldenstorm; herdacht op de eerste zondag van de Vasten.","Definitive end of the first iconoclasm; commemorated on the first Sunday of Lent."]],
+["988",["Doop van de Rus’ van Kiev","Baptism of Kievan Rus’"],["Volgens de overlevering neemt vorst Vladimir het Byzantijnse christendom aan.","According to tradition, Prince Vladimir adopts Byzantine Christianity."]],
+["1054",["Het Grote Schisma","The Great Schism"],["Wederzijdse banvloeken tussen Rome en Constantinopel; de breuk verhardde zich in de eeuwen erna.","Mutual excommunications between Rome and Constantinople; the rupture hardened over the following centuries."]],
+["1204",["Plundering van Constantinopel","Sack of Constantinople"],["De Vierde Kruistocht neemt de stad in, een klap die de scheiding verdiepte.","The Fourth Crusade takes the city, a blow that deepened the separation."]],
+["1453",["Val van Constantinopel","Fall of Constantinople"],["De Ottomanen veroveren de Byzantijnse hoofdstad; de Kerk blijft bestaan onder nieuw bewind.","The Ottomans conquer the Byzantine capital; the Church endures under new rule."]],
+["1589",["Patriarchaat van Moskou","Patriarchate of Moscow"],["Het Russische patriarchaat wordt opgericht, erkend door de andere kerken.","The Russian patriarchate is established, recognised by the other churches."]],
+["1917–1918",["Herstel van het Russische patriarchaat","Restoration of the Russian patriarchate"],["Het patriarchaat van Moskou wordt hersteld, vlak voor tientallen jaren Sovjetvervolging.","The Moscow patriarchate is restored, shortly before decades of Soviet persecution."]]];
+var AR=[[["Hagia Sophia","Hagia Sophia"],["Constantinopel (nu Istanboel)","Constantinople (now Istanbul)"],["Ingewijd in 537 onder Justinianus; de centrale koepel bepaalde de Byzantijnse bouwkunst.","Consecrated in 537 under Justinian; its central dome shaped Byzantine architecture."]],
+[["Meteora","Meteora"],["Griekenland","Greece"],["Kloosters op rotspilaren, vooral gesticht tussen de 14e en 16e eeuw.","Monasteries atop rock pillars, founded mostly between the 14th and 16th centuries."]],
+[["Athosberg","Mount Athos"],["Griekenland","Greece"],["Monastiek schiereiland; het oudste klooster, de Grote Lavra, dateert van 963.","Monastic peninsula; its oldest monastery, the Great Lavra, dates from 963."]],
+[["Beschilderde kloosters van Boekovina","Painted monasteries of Bucovina"],["Roemenië","Romania"],["Kerken uit de 15e en 16e eeuw met fresco’s aan de buitenmuren, zoals Voroneț.","Churches of the 15th and 16th centuries with exterior frescoes, such as Voroneț."]],
+[["Studenica","Studenica"],["Servië","Serbia"],["Rond 1190 gesticht door Stefan Nemanja; voorbeeld van middeleeuwse Servische kunst.","Founded around 1190 by Stefan Nemanja; an example of medieval Serbian art."]],
+[["Klooster van Rila","Rila Monastery"],["Bulgarije","Bulgaria"],["Bulgaars spiritueel centrum, gesticht in de 10e eeuw bij de heilige Johannes van Rila.","Bulgaria’s spiritual centre, founded in the 10th century by Saint John of Rila."]],
+[["Basiliuskathedraal","Saint Basil’s Cathedral"],["Rusland","Russia"],["Gebouwd tussen 1555 en 1561 op het Rode Plein, beroemd om de gekleurde koepels.","Built between 1555 and 1561 on Red Square, famous for its colourful domes."]]];
+var TR=[[["Pasen","Easter"],["Het feest der feesten. De datum wordt berekend met de juliaanse kalender en valt daardoor vaak op een andere datum dan in het Westen (soms op dezelfde). In de paaswake wordt het licht van de kaars doorgegeven en klinkt: «Christus is verrezen!»","The feast of feasts. Its date is calculated with the Julian calendar, so it often differs from the Western date (sometimes it coincides). During the Paschal vigil the candlelight is passed from person to person and the cry rings out: “Christ is risen!”"]],
+[["Kerstmis","Christmas"],["Gevierd op 25 december, maar volgens de kalender van elke kerk: Griekenland, Roemenië en Bulgarije gebruiken de herziene juliaanse kalender (25 december burgerlijk), terwijl Rusland, Servië of Jeruzalem de juliaanse volgen (7 januari burgerlijk).","Celebrated on 25 December, but by each church’s own calendar: Greece, Romania and Bulgaria use the Revised Julian calendar (25 December civil), while Russia, Serbia or Jerusalem follow the Julian (7 January civil)."]],
+[["Gebed","Prayer"],["Combineert liturgische gebeden, de psalmen en het Jezusgebed: «Heer Jezus Christus, Zoon van God, ontferm U over mij». Men bidt staande, met kruistekens en buigingen.","Combines liturgical prayers, the Psalms and the Jesus Prayer: “Lord Jesus Christ, Son of God, have mercy on me.” One prays standing, with signs of the cross and bows."]],
+[["Vasten","Fasting"],["Men vast in de Vastentijd, de Advent (de vasten van de Geboorte), op woensdag en vrijdag en in andere periodes. Meestal zonder vlees, zuivel en, op strenge dagen, olie; de regels verschillen per lokale traditie en per persoon (gezondheid).","Fasting is kept in Lent, Advent (the Nativity fast), on Wednesdays and Fridays and in other periods. It usually excludes meat, dairy and, on strict days, oil; rules vary by local tradition and by the individual’s health."]],
+[["Liturgie","Liturgy"],["De Goddelijke Liturgie (van Johannes Chrysostomus of van Basilius) is de viering van de Eucharistie, met koorzang zonder instrumenten, wierook en de communie van brood en wijn.","The Divine Liturgy (of Saint John Chrysostom or Saint Basil) is the celebration of the Eucharist, with unaccompanied choral chant, incense and communion of bread and wine."]],
+[["Verering","Veneration"],["De gelovigen kussen de iconen, steken kaarsen aan en buigen ervoor. Een icoon wordt «geschreven» volgens vaste canons en de eer gaat naar de afgebeelde persoon.","The faithful kiss the icons, light candles and bow before them. An icon is “written” following set canons, and the honour passes to the person depicted."]],
+[["Kloosterleven","Monastic life"],["Monniken en nonnen leven in gebed, werk en gehoorzaamheid. De Athosberg is het bekendste centrum; uit de kloosters komen veel spirituele schrijvers.","Monks and nuns live in prayer, work and obedience. Mount Athos is the best-known centre; many spiritual writers come from the monasteries."]]];
+var G='stroke="#e8c978" fill="none" stroke-width="3" stroke-linecap="round"';
+var SY=[[["Het kruis met drie balken","The three-bar cross"],["De gebruikelijke vorm in de Slavische wereld: de bovenste balk draagt het titulus (opschrift), de middelste de armen en de schuine onderste de voetsteun. De schuine stand kent verschillende vrome duidingen.","The usual form in the Slavic world: the top bar carries the titulus (inscription), the middle one the arms and the slanted lower one the footrest. The slant has several pious interpretations."],'<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" '+G+'/><path d="M60 20V100M45 34H75M38 56H82M48 82L72 72" '+G+'/></svg>'],
+[["Het monogram IC XC","The IC XC monogram"],["Griekse afkortingen van «Jezus Christus» (ΙΗΣΟΥΣ ΧΡΙΣΤΟΣ). Staat naast afbeeldingen van Christus.","Greek abbreviations of “Jesus Christ” (ΙΗΣΟΥΣ ΧΡΙΣΤΟΣ). Found beside images of Christ."],'<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" '+G+'/><text x="60" y="52" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#e8c978">ΙϹ</text><text x="60" y="88" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#e8c978">ΧϹ</text></svg>'],
+[["De Moeder Gods","The Mother of God"],["De letters ΜΡ ΘΥ staan voor «Moeder van God» (Theotokos). De drie sterren op de mantel, op voorhoofd en schouders, drukken volgens de traditie haar maagdelijkheid voor, tijdens en na de geboorte uit.","The letters ΜΡ ΘΥ abbreviate “Mother of God” (Theotokos). The three stars on the mantle, on the forehead and shoulders, express, according to tradition, her virginity before, during and after the birth."],'<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" '+G+'/><text x="60" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#e8c978">ΜΡ ΘΥ</text><path d="M60 62l3 7h7l-6 5 2 7-6-4-6 4 2-7-6-5h7zM38 74l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4zM82 74l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z" fill="#e8c978" stroke="none"/></svg>'],
+[["De vis (Ichthys)","The fish (Ichthys)"],["Ἰχθύς, «vis», was een acrostichon van de eerste christenen: Jezus Christus, Zoon van God, Verlosser. Een van de oudste symbolen van het christendom.","Ἰχθύς, “fish”, was an acrostic of the early Christians: Jesus Christ, Son of God, Saviour. One of the oldest symbols of Christianity."],'<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" '+G+'/><path d="M24 60Q50 32 84 60Q50 88 24 60ZM84 60L100 44V76Z" '+G+'/><circle cx="40" cy="56" r="3" fill="#e8c978"/></svg>']];
+/* ---------- render ---------- */
+var tl=$('#tl'),ar=$('#ar'),ic=$('#ic'),tb=$('#tabs'),pn=$('#panel'),dlg=$('#dlg'),ti=0,first=true,io;
+function pick(a){return a[L]}
+function build(){
+tl.innerHTML='';EV.forEach(function(e){var d=document.createElement('div');d.className='ev rv';d.innerHTML='<b>'+e[0]+'</b><h3 style="margin:0">'+pick(e[1])+'</h3><p>'+pick(e[2])+'</p>';tl.appendChild(d)});
+ar.innerHTML='';AR.forEach(function(a){var c=document.createElement('article');c.className='card';c.innerHTML='<h3>'+pick(a[0])+'</h3><small>'+pick(a[1])+'</small><p style="margin-top:.6rem">'+pick(a[2])+'</p>';ar.appendChild(c)});
+ic.innerHTML='';SY.forEach(function(s){var b=document.createElement('button');b.className='card';b.innerHTML='<span class="med">'+s[2]+'</span><h3 style="text-align:center">'+pick(s[0])+'</h3><p style="text-align:center">'+pick(s[1]).split('. ')[0]+'.</p>';
+b.onclick=function(){$('#dc').innerHTML=s[2];$('#dtx').textContent=pick(s[0])+'. '+pick(s[1]);dlg.showModal()};ic.appendChild(b)});
+tb.innerHTML='';TR.forEach(function(t,i){var b=document.createElement('button');b.role='tab';b.textContent=pick(t[0]);b.setAttribute('aria-selected',i==ti);b.onclick=function(){ti=i;build()};tb.appendChild(b)});
+pn.innerHTML='<h3>'+pick(TR[ti][0])+'</h3><p>'+pick(TR[ti][1])+'</p>';
+document.querySelectorAll('.rv').forEach(function(e){if(first)io.observe(e);else e.classList.add('on')});
+}
+function apply(){
+document.documentElement.lang=L?'en':'nl';
+document.querySelectorAll('[data-t]').forEach(function(e){e.innerHTML=pick(S[e.dataset.t])});
+document.querySelectorAll('[data-al]').forEach(function(e){e.setAttribute('aria-label',pick(S[e.dataset.al]))});
+document.title=pick(S.h1);
+$('meta[name=description]').setAttribute('content',L?'History, icons, architecture and traditions of the Orthodox Church, with an interactive 3D church.':'Geschiedenis, iconen, architectuur en tradities van de Orthodoxe Kerk, met een interactieve 3D-kerk.');
+document.querySelectorAll('.lg button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.l===L)});
+$('#burger').textContent='Menu'}
+io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.15});
+apply();build();first=false;
+document.querySelectorAll('.lg button').forEach(function(b){b.onclick=function(){L=+b.dataset.l;try{localStorage.setItem('lang',L)}catch(e){}apply();build()}});
+$('#hf').innerHTML='<svg viewBox="0 0 300 400"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#e8c978"/><stop offset="1" stop-color="#a47f2f"/></linearGradient><radialGradient id="s" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#e8a548" stop-opacity=".6"/><stop offset="1" stop-color="#0b1230" stop-opacity="0"/></radialGradient></defs><rect width="300" height="400" fill="#0b1230"/><rect width="300" height="400" fill="url(#s)"/><g fill="url(#g)"><rect x="90" y="250" width="120" height="110"/><rect x="132" y="200" width="36" height="55"/><path d="M150 120c-26 28-24 58 0 78 24-20 26-50 0-78z"/><path d="M96 238c-14 14-13 30 0 40 13-10 14-26 0-40zM204 238c-14 14-13 30 0 40 13-10 14-26 0-40z"/><path d="M150 96v28M141 108h18" stroke="url(#g)" stroke-width="3"/><rect x="60" y="360" width="180" height="10"/></g><g fill="#0b1230"><path d="M140 360v-34a10 10 0 0120 0v34z"/><rect x="104" y="290" width="12" height="22" rx="6"/><rect x="184" y="290" width="12" height="22" rx="6"/></g></svg>';
+$('#dx').onclick=function(){dlg.close()};dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+var bg=$('#burger'),mn=$('#menu');bg.onclick=function(){var o=mn.classList.toggle('open');bg.setAttribute('aria-expanded',o)};
+mn.addEventListener('click',function(){mn.classList.remove('open');bg.setAttribute('aria-expanded',false)});
+if(!RM){document.addEventListener('pointermove',function(e){var c=e.target.closest&&e.target.closest('.card');if(!c)return;var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='rotateY('+x*14+'deg) rotateX('+-y*14+'deg)'});
+document.addEventListener('pointerout',function(e){var c=e.target.closest&&e.target.closest('.card');if(c)c.style.transform=''})}
+/* ---------- Three.js ---------- */
+var cv=$('#gl'),ok=false,R;
+try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});ok=!!R.getContext()}catch(e){}
+if(!ok||typeof THREE==='undefined'){cv.style.display='none';$('#fallback').style.display='block';return}
+var mob=innerWidth<820;R.setPixelRatio(Math.min(devicePixelRatio,mob?1.3:2));
+var sc=new THREE.Scene();sc.fog=new THREE.FogExp2(0x0b1230,.045);
+var cam=new THREE.PerspectiveCamera(42,1,.1,100);
+var gold=new THREE.MeshStandardMaterial({color:0xd4a843,metalness:.85,roughness:.3});
+var wall=new THREE.MeshStandardMaterial({color:0xe9dfc8,roughness:.8});
+var dark=new THREE.MeshStandardMaterial({color:0x2a2f55,roughness:.7});
+var ch=new THREE.Group();
+function box(w,h,d,x,y,z,m){var o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m||wall);o.position.set(x,y,z);ch.add(o);return o}
+function dome(r,x,y,z){var pts=[];for(var i=0;i<=16;i++){var t=i/16,rr=r*Math.sin(Math.PI*Math.pow(t,.8))*(t<.55?1:1-(t-.55)*.9);pts.push(new THREE.Vector2(Math.max(rr,.001),t*r*2.4))}
+var m=new THREE.Mesh(new THREE.LatheGeometry(pts,mob?18:32),gold);m.position.set(x,y,z);ch.add(m);
+var c=new THREE.Mesh(new THREE.CylinderGeometry(.015,.015,.4),gold);c.position.set(x,y+r*2.4+.15,z);ch.add(c);
+var c2=new THREE.Mesh(new THREE.BoxGeometry(.2,.015,.015),gold);c2.position.set(x,y+r*2.4+.25,z);ch.add(c2)}
+box(3.4,1.6,2.4,0,.8,0);box(1.1,1.5,1.1,0,2.3,0);
+[[-1.5,-1],[1.5,-1],[-1.5,1],[1.5,1]].forEach(function(p){box(.7,1.2,.7,p[0],2.2,p[1]*.7);dome(.34,p[0],2.8,p[1]*.7)});
+dome(.62,0,3.05,0);box(1.2,.9,1.2,0,.45,1.7);
+for(var i=-3;i<=3;i++)box(.18,.6,.05,i*.4,1.05,1.22,dark);
+[-1,0,1].forEach(function(i){box(.35,.7,.05,i*.9,.55,1.22,dark)});
+ch.position.y=-.9;sc.add(ch);
+var gr=new THREE.Mesh(new THREE.CircleGeometry(14,48),new THREE.MeshStandardMaterial({color:0x10142a,roughness:1}));gr.rotation.x=-Math.PI/2;gr.position.y=-.9;sc.add(gr);
+sc.add(new THREE.HemisphereLight(0x5b6fc0,0x120c05,.7));
+var key=new THREE.PointLight(0xffb15a,2.2,18);key.position.set(2,3,4.5);sc.add(key);
+var rim=new THREE.DirectionalLight(0x7f94ff,.8);rim.position.set(-4,4,-3);sc.add(rim);
+var N=mob?120:300,pg=new THREE.BufferGeometry(),pa=new Float32Array(N*3);
+for(var k=0;k<N;k++){pa[k*3]=(Math.random()-.5)*14;pa[k*3+1]=Math.random()*7-1;pa[k*3+2]=(Math.random()-.5)*10}
+pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
+var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xf2c673,size:.05,transparent:true,opacity:.75}));sc.add(pts);
+var mx=0,my=0,vis=true,t0=performance.now();
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+function size(){var w=cv.clientWidth,h=cv.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();
+ch.position.x=w>h&&!mob?2.2:0;ch.scale.setScalar(mob?.85:1)}
+addEventListener('resize',function(){size();if(RM)draw(0)});size();
+new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe($('#hero'));
+function draw(t){var s=RM?0:t*.001;
+cam.position.set(Math.sin(s*.15)*1.2+mx*1.6,2.2-my*.8+(RM?0:Math.sin(s*.2)*.2),mob?10.5:8.2);cam.lookAt(ch.position.x*.7,1.4,0);
+key.intensity=2.1+(RM?0:Math.sin(s*7)*.12+Math.sin(s*3.1)*.08);
+if(!RM)pts.rotation.y=s*.02;R.render(sc,cam)}
+function loop(){requestAnimationFrame(loop);if(vis)draw(performance.now()-t0)}
+if(RM)draw(0);else loop();
+})();
+</script>
+</body>
+</html>
